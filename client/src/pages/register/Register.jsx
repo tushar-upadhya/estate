@@ -48,3 +48,5 @@ const Register = () => {
 };
 
 export default Register;
+
+// 1 00
