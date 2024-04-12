@@ -1,9 +1,13 @@
 import "./register.scss";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import registerImage from "../../../public/assets/bg.png";
 import axios from "axios";
+import { useState } from "react";
 
 const Register = () => {
+  const [error, setError] = useState("");
+  const navigate = useNavigate();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -14,13 +18,16 @@ const Register = () => {
 
     // console.log(username, email, password);
     try {
-      const res = await axios.post("localhost:3300/api/auth/register", {
+      const res = await axios.post("https://localhost:3300/api/auth/register", {
         username,
         email,
         password,
       });
+      // console.log("res:", res.data);
+      navigate("/login");
     } catch (error) {
       console.log("error:", error);
+      setError(error.response.data.message);
     }
   };
 
@@ -35,7 +42,7 @@ const Register = () => {
           <input type="password" name="password" placeholder="Password" />
 
           <button>Register</button>
-
+          {error && <span>{error}</span>}
           <Link to={"/"}>Do you have an account ?</Link>
         </form>
       </div>
@@ -48,5 +55,3 @@ const Register = () => {
 };
 
 export default Register;
-
-// 1 00
