@@ -1,8 +1,8 @@
-import { useSearchParams } from "react-router-dom";
-import "./filter.scss";
 import { useState } from "react";
+import "./filter.scss";
+import { useSearchParams } from "react-router-dom";
 
-const Filter = () => {
+function Filter() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState({
     type: searchParams.get("type") || "",
@@ -110,6 +110,6 @@ const Filter = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Filter;

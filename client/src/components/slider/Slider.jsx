@@ -1,11 +1,10 @@
 import { useState } from "react";
 import "./slider.scss";
-import arrowImage from "../../../public/assets/arrow.png";
 
-const Slider = ({ images }) => {
+function Slider({ images }) {
   const [imageIndex, setImageIndex] = useState(null);
 
-  const handleChangeSlide = (direction) => {
+  const changeSlide = (direction) => {
     if (direction === "left") {
       if (imageIndex === 0) {
         setImageIndex(images.length - 1);
@@ -25,28 +24,23 @@ const Slider = ({ images }) => {
     <div className="slider">
       {imageIndex !== null && (
         <div className="fullSlider">
-          <div className="arrow" onClick={() => handleChangeSlide("left")}>
-            <img src={arrowImage} alt="" />
+          <div className="arrow" onClick={() => changeSlide("left")}>
+            <img src="/arrow.png" alt="" />
           </div>
-
           <div className="imgContainer">
             <img src={images[imageIndex]} alt="" />
           </div>
-
-          <div className="arrow" onClick={() => handleChangeSlide("right")}>
-            <img src={arrowImage} className="right" alt="" />
+          <div className="arrow" onClick={() => changeSlide("right")}>
+            <img src="/arrow.png" className="right" alt="" />
           </div>
-
           <div className="close" onClick={() => setImageIndex(null)}>
             X
           </div>
         </div>
       )}
-
       <div className="bigImage">
         <img src={images[0]} alt="" onClick={() => setImageIndex(0)} />
       </div>
-
       <div className="smallImages">
         {images.slice(1).map((image, index) => (
           <img
@@ -59,6 +53,6 @@ const Slider = ({ images }) => {
       </div>
     </div>
   );
-};
+}
 
 export default Slider;

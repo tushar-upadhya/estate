@@ -1,9 +1,9 @@
-import "./map.scss";
 import { MapContainer, TileLayer } from "react-leaflet";
+import "./map.scss";
 import "leaflet/dist/leaflet.css";
 import Pin from "../pin/Pin";
 
-const Map = ({ items }) => {
+function Map({ items }) {
   return (
     <MapContainer
       center={
@@ -24,6 +24,6 @@ const Map = ({ items }) => {
       ))}
     </MapContainer>
   );
-};
+}
 
 export default Map;

@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import "./card.scss";
-import chatImage from "../../../public/assets/chat.png";
-import saveImage from "../../../public/assets/save.png";
 
-const Card = ({ item }) => {
+function Card({ item }) {
   return (
     <div className="card">
       <Link to={`/${item.id}`} className="imageContainer">
@@ -31,16 +29,16 @@ const Card = ({ item }) => {
           </div>
           <div className="icons">
             <div className="icon">
-              <img src={saveImage} alt="" />
+              <img src="/save.png" alt="" />
             </div>
             <div className="icon">
-              <img src={chatImage} alt="" />
+              <img src="/chat.png" alt="" />
             </div>
           </div>
         </div>
       </div>
     </div>
   );
-};
+}
 
 export default Card;

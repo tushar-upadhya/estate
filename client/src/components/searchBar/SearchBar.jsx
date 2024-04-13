@@ -1,19 +1,23 @@
 import { useState } from "react";
 import "./searchBar.scss";
-import buttonImage from "../../../public/assets/search.png";
-import { types } from "../../utils/types";
 import { Link } from "react-router-dom";
 
-const SearchBar = () => {
+const types = ["buy", "rent"];
+
+function SearchBar() {
   const [query, setQuery] = useState({
     type: "buy",
-    location: "",
+    city: "",
     minPrice: 0,
     maxPrice: 0,
   });
 
-  const handleSwitchType = (val) => {
+  const switchType = (val) => {
     setQuery((prev) => ({ ...prev, type: val }));
+  };
+
+  const handleChange = (e) => {
+    setQuery((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   return (
@@ -22,7 +26,7 @@ const SearchBar = () => {
         {types.map((type) => (
           <button
             key={type}
-            onClick={() => handleSwitchType(type)}
+            onClick={() => switchType(type)}
             className={query.type === type ? "active" : ""}
           >
             {type}
@@ -34,7 +38,7 @@ const SearchBar = () => {
           type="text"
           name="city"
           placeholder="City"
-          // onChange={handleChange}
+          onChange={handleChange}
         />
         <input
           type="number"
@@ -42,7 +46,7 @@ const SearchBar = () => {
           min={0}
           max={10000000}
           placeholder="Min Price"
-          // onChange={handleChange}
+          onChange={handleChange}
         />
         <input
           type="number"
@@ -50,18 +54,18 @@ const SearchBar = () => {
           min={0}
           max={10000000}
           placeholder="Max Price"
-          // onChange={handleChange}
+          onChange={handleChange}
         />
-        {/* <Link
+        <Link
           to={`/list?type=${query.type}&city=${query.city}&minPrice=${query.minPrice}&maxPrice=${query.maxPrice}`}
         >
           <button>
-            <img src={buttonImage} alt="" />
+            <img src="/search.png" alt="" />
           </button>
-        </Link> */}
+        </Link>
       </form>
     </div>
   );
-};
+}
 
 export default SearchBar;
